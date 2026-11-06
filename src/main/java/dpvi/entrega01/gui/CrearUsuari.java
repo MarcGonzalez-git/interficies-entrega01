@@ -29,21 +29,118 @@ public class CrearUsuari extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelNom = new javax.swing.JLabel();
+        jLabelLlinatge1 = new javax.swing.JLabel();
+        jLabelLlinatge2 = new javax.swing.JLabel();
+        jLabelDni = new javax.swing.JLabel();
+        jLabelTelefon = new javax.swing.JLabel();
+        jLabelDataRegistre = new javax.swing.JLabel();
+        jTextFieldNom = new javax.swing.JTextField();
+        jTextFieldLlinatge1 = new javax.swing.JTextField();
+        jTextFieldLlinatge2 = new javax.swing.JTextField();
+        jTextFieldDni = new javax.swing.JTextField();
+        jTextFieldTelefon = new javax.swing.JTextField();
+        jSpinnerDataRegistre = new javax.swing.JSpinner();
+        jButtonConfirmar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabelNom.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jLabelNom.text")); // NOI18N
+
+        jLabelLlinatge1.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jLabelLlinatge1.text")); // NOI18N
+
+        jLabelLlinatge2.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jLabelLlinatge2.text")); // NOI18N
+
+        jLabelDni.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jLabelDni.text")); // NOI18N
+
+        jLabelTelefon.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jLabelTelefon.text")); // NOI18N
+
+        jLabelDataRegistre.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jLabelDataRegistre.text")); // NOI18N
+
+        jTextFieldNom.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jTextFieldNom.text")); // NOI18N
+        jTextFieldNom.addActionListener(this::jTextFieldNomActionPerformed);
+
+        jTextFieldLlinatge1.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jTextFieldLlinatge1.text")); // NOI18N
+
+        jTextFieldLlinatge2.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jTextFieldLlinatge2.text")); // NOI18N
+
+        jTextFieldDni.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jTextFieldDni.text")); // NOI18N
+
+        jTextFieldTelefon.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jTextFieldTelefon.text")); // NOI18N
+
+        jButtonConfirmar.setBackground(new java.awt.Color(0, 153, 51));
+        jButtonConfirmar.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jButtonConfirmar.text")); // NOI18N
+
+        jButtonCancelar.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jButtonCancelar.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelLlinatge1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelLlinatge2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelTelefon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelDataRegistre, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                    .addComponent(jLabelNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldNom)
+                    .addComponent(jTextFieldLlinatge1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jTextFieldLlinatge2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jTextFieldDni, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jTextFieldTelefon, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jSpinnerDataRegistre)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNom)
+                    .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelLlinatge1)
+                    .addComponent(jTextFieldLlinatge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelLlinatge2)
+                    .addComponent(jTextFieldLlinatge2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDni)
+                    .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTelefon)
+                    .addComponent(jTextFieldTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDataRegistre)
+                    .addComponent(jSpinnerDataRegistre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,5 +180,19 @@ public class CrearUsuari extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonConfirmar;
+    private javax.swing.JLabel jLabelDataRegistre;
+    private javax.swing.JLabel jLabelDni;
+    private javax.swing.JLabel jLabelLlinatge1;
+    private javax.swing.JLabel jLabelLlinatge2;
+    private javax.swing.JLabel jLabelNom;
+    private javax.swing.JLabel jLabelTelefon;
+    private javax.swing.JSpinner jSpinnerDataRegistre;
+    private javax.swing.JTextField jTextFieldDni;
+    private javax.swing.JTextField jTextFieldLlinatge1;
+    private javax.swing.JTextField jTextFieldLlinatge2;
+    private javax.swing.JTextField jTextFieldNom;
+    private javax.swing.JTextField jTextFieldTelefon;
     // End of variables declaration//GEN-END:variables
 }
