@@ -56,6 +56,14 @@ public class Usuari {
         this.dni = dni;
     }
 
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+    
     public Date getData() {
         return data;
     }
