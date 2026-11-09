@@ -8,6 +8,8 @@ import dpvi.entrega01.dto.Usuari;
 import dpvi.entrega01.logic.BusinessLogic;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import org.netbeans.validation.api.Problems;
+import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
 
 /**
  *
@@ -168,6 +170,15 @@ public class CrearUsuari extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean validarMajuscula(String text) {
+
+        Problems problemes = new Problems();
+
+        StringValidators.regexp("^[\\p{Lu}].*", "El nom ha de començar amb majúscula.", false).validate(problemes, "Nom", text);
+
+        return problemes.getLeadProblem() == null;
+    }
+    
     private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomActionPerformed
@@ -186,7 +197,7 @@ public class CrearUsuari extends javax.swing.JDialog {
             return;
         }
 
-        if (!Character.isUpperCase(nom.charAt(0)) || !Character.isUpperCase(llinatge1.charAt(0)) || (!llinatge2.isEmpty() && !Character.isUpperCase(llinatge2.charAt(0)))) {
+        if (!validarMajuscula(nom) || !validarMajuscula(llinatge1) || (!llinatge2.isEmpty() && !validarMajuscula(llinatge2))) {
 
             JOptionPane.showMessageDialog(this, "El nom i els llinatges han de començar amb majúscula.", "Error", JOptionPane.ERROR_MESSAGE);
             
