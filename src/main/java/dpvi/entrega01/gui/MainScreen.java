@@ -186,7 +186,12 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCrearUsuariActionPerformed
 
     private void jMenuItemTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTornarActionPerformed
-        // TODO add your handling code here:
+        TornarLloguer finestra = new TornarLloguer(this, true, businessLogic);
+
+        finestra.setLocationRelativeTo(this);
+        finestra.setVisible(true);
+
+        carregarTaula();
     }//GEN-LAST:event_jMenuItemTornarActionPerformed
 
     private void jMenuLloguerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLloguerActionPerformed

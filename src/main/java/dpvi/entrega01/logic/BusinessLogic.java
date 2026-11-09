@@ -78,6 +78,20 @@ public class BusinessLogic {
         lloguers.add(nouLloguer);
     }
     
+    public void tornarLloguer(Lloguer lloguer) {
+
+        if (lloguer == null || !lloguers.contains(lloguer)) {
+            throw new IllegalArgumentException("El lloguer seleccionat no és vàlid.");
+        }
+
+        if (lloguer.isRetornat()) {
+            throw new IllegalArgumentException("Aquest lloguer ja s'ha retornat.");
+        }
+
+        lloguer.setRetornat(true);
+        lloguer.getPlataforma().augmentarUnitat();
+    }
+    
     private void carregarDadesInicials() {
         
         //Usuaris

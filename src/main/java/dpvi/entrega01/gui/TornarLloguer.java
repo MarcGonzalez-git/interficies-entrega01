@@ -5,18 +5,44 @@
 
 package dpvi.entrega01.gui;
 
+import dpvi.entrega01.dto.Lloguer;
+import dpvi.entrega01.logic.BusinessLogic;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Alumne
  */
 public class TornarLloguer extends javax.swing.JDialog {
+    
+    private BusinessLogic businessLogic;
+    private ArrayList<Lloguer> lloguersActius = new ArrayList<>();
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TornarLloguer.class.getName());
 
     /** Creates new form TornarLloguer */
-    public TornarLloguer(java.awt.Frame parent, boolean modal) {
+    public TornarLloguer(java.awt.Frame parent, boolean modal, BusinessLogic businessLogic) {
         super(parent, modal);
         initComponents();
+
+        this.businessLogic = businessLogic;
+
+        jTableLloguer.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        jTableLloguer.getSelectionModel().addListSelectionListener(evt -> {
+            if (!evt.getValueIsAdjusting()) {
+                mostrarInformacio();
+            }
+        });
+
+        if (businessLogic != null) {
+            carregarTaula();
+        } else {
+            netejarInformacio();
+        }
     }
 
     /** This method is called from within the constructor to
@@ -28,21 +54,215 @@ public class TornarLloguer extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableLloguer = new javax.swing.JTable();
+        jButtonTancar = new javax.swing.JButton();
+        jButtonRetornar = new javax.swing.JButton();
+        jLabelJoc = new javax.swing.JLabel();
+        jLabelUsuari = new javax.swing.JLabel();
+        jLabelPlataforma = new javax.swing.JLabel();
+        jLabelDataInici = new javax.swing.JLabel();
+        jLabelInfoJoc = new javax.swing.JLabel();
+        jLabelInfoUsuari = new javax.swing.JLabel();
+        jLabelInfoPlataforma = new javax.swing.JLabel();
+        jLabelInfoDataInici = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTableLloguer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Núm. registre", "Usuari", "Joc", "Plataforma", "Data d'inici"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableLloguer);
+        if (jTableLloguer.getColumnModel().getColumnCount() > 0) {
+            jTableLloguer.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jTableLloguer.columnModel.title0")); // NOI18N
+            jTableLloguer.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jTableLloguer.columnModel.title1")); // NOI18N
+            jTableLloguer.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jTableLloguer.columnModel.title2")); // NOI18N
+            jTableLloguer.getColumnModel().getColumn(3).setHeaderValue(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jTableLloguer.columnModel.title3_1")); // NOI18N
+            jTableLloguer.getColumnModel().getColumn(4).setHeaderValue(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jTableLloguer.columnModel.title4")); // NOI18N
+        }
+
+        jButtonTancar.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jButtonTancar.text")); // NOI18N
+        jButtonTancar.addActionListener(this::jButtonTancarActionPerformed);
+
+        jButtonRetornar.setBackground(new java.awt.Color(0, 153, 51));
+        jButtonRetornar.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jButtonRetornar.text")); // NOI18N
+        jButtonRetornar.addActionListener(this::jButtonRetornarActionPerformed);
+
+        jLabelJoc.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jLabelJoc.text")); // NOI18N
+
+        jLabelUsuari.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jLabelUsuari.text")); // NOI18N
+
+        jLabelPlataforma.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jLabelPlataforma.text")); // NOI18N
+
+        jLabelDataInici.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jLabelDataInici.text")); // NOI18N
+
+        jLabelInfoJoc.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jLabelInfoJoc.text")); // NOI18N
+
+        jLabelInfoUsuari.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jLabelInfoUsuari.text")); // NOI18N
+
+        jLabelInfoPlataforma.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jLabelInfoPlataforma.text")); // NOI18N
+
+        jLabelInfoDataInici.setText(org.openide.util.NbBundle.getMessage(TornarLloguer.class, "TornarLloguer.jLabelInfoDataInici.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelJoc)
+                    .addComponent(jLabelUsuari)
+                    .addComponent(jLabelPlataforma)
+                    .addComponent(jLabelDataInici))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelInfoDataInici)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonTancar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelInfoPlataforma)
+                            .addComponent(jLabelInfoUsuari)
+                            .addComponent(jLabelInfoJoc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonRetornar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonRetornar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonTancar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelJoc)
+                            .addComponent(jLabelInfoJoc))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelUsuari)
+                            .addComponent(jLabelInfoUsuari))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelPlataforma)
+                            .addComponent(jLabelInfoPlataforma))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelDataInici)
+                            .addComponent(jLabelInfoDataInici))
+                        .addContainerGap(31, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void carregarTaula() {
+
+        DefaultTableModel model = (DefaultTableModel) jTableLloguer.getModel();
+
+        model.setRowCount(0);
+        lloguersActius.clear();
+
+        for (Lloguer lloguer : businessLogic.getLloguers()) {
+
+            if (!lloguer.isRetornat()) {
+
+                lloguersActius.add(lloguer);
+
+                model.addRow(new Object[]{
+                    lloguer.getNumRegistre(),
+                    lloguer.getUsuari().getNomComplet(),
+                    lloguer.getJoc().getNom(),
+                    lloguer.getPlataforma().getNom(),
+                    lloguer.getDataInici()
+                });
+            }
+        }
+
+        jTableLloguer.clearSelection();
+        netejarInformacio();
+    }
+    
+    private void netejarInformacio() {
+
+        jLabelInfoJoc.setText("-");
+        jLabelInfoUsuari.setText("-");
+        jLabelInfoPlataforma.setText("-");
+        jLabelInfoDataInici.setText("-");
+
+        jButtonRetornar.setEnabled(false);
+    }
+    
+    private void mostrarInformacio() {
+
+        int fila = jTableLloguer.getSelectedRow();
+
+        if (fila == -1) {
+            netejarInformacio();
+            return;
+        }
+
+        int index = jTableLloguer.convertRowIndexToModel(fila);
+
+        Lloguer lloguer = lloguersActius.get(index);
+
+        jLabelInfoJoc.setText(lloguer.getJoc().getNom());
+        jLabelInfoUsuari.setText(lloguer.getUsuari().getNomComplet());
+        jLabelInfoPlataforma.setText(lloguer.getPlataforma().getNom());
+        jLabelInfoDataInici.setText(lloguer.getDataInici().toString());
+
+        jButtonRetornar.setEnabled(true);
+    }
+    
+    private void jButtonTancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTancarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonTancarActionPerformed
+
+    private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
+        int fila = jTableLloguer.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Has de seleccionar un lloguer.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int index = jTableLloguer.convertRowIndexToModel(fila);
+
+        Lloguer lloguer = lloguersActius.get(index);
+
+        int resposta = JOptionPane.showConfirmDialog(this, "Vols retornar el joc " + lloguer.getJoc().getNom() + "?", "Confirmar devolució", JOptionPane.YES_NO_OPTION);
+
+        if (resposta != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        try {
+            businessLogic.tornarLloguer(lloguer);
+
+            JOptionPane.showMessageDialog(this,"Lloguer retornat correctament.", "Informació", JOptionPane.INFORMATION_MESSAGE);
+
+            carregarTaula();
+
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRetornarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,7 +289,7 @@ public class TornarLloguer extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                TornarLloguer dialog = new TornarLloguer(new javax.swing.JFrame(), true);
+                TornarLloguer dialog = new TornarLloguer(new javax.swing.JFrame(), true, new BusinessLogic());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -82,6 +302,18 @@ public class TornarLloguer extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRetornar;
+    private javax.swing.JButton jButtonTancar;
+    private javax.swing.JLabel jLabelDataInici;
+    private javax.swing.JLabel jLabelInfoDataInici;
+    private javax.swing.JLabel jLabelInfoJoc;
+    private javax.swing.JLabel jLabelInfoPlataforma;
+    private javax.swing.JLabel jLabelInfoUsuari;
+    private javax.swing.JLabel jLabelJoc;
+    private javax.swing.JLabel jLabelPlataforma;
+    private javax.swing.JLabel jLabelUsuari;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableLloguer;
     // End of variables declaration//GEN-END:variables
 
 }
