@@ -4,11 +4,16 @@
  */
 package dpvi.entrega01.gui;
 
+import dpvi.entrega01.logic.BusinessLogic;
+import dpvi.entrega01.dto.Lloguer;
+
 /**
  *
  * @author Alumne
  */
 public class MainScreen extends javax.swing.JFrame {
+    
+    private BusinessLogic businessLogic;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainScreen.class.getName());
 
@@ -17,6 +22,10 @@ public class MainScreen extends javax.swing.JFrame {
      */
     public MainScreen() {
         initComponents();
+        
+        businessLogic = new BusinessLogic();
+
+        carregarTaula();
     }
 
     /**
@@ -50,7 +59,7 @@ public class MainScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Núm. registre", "Titol del joc", "Usuari", "Plataforma", "Data d'inici", "Data de tornada", "Gènere"
+                "Núm. registre", "Usuari", "Joc", "Plataforma", "Data d'inici", "Data de tornada", "Estat"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -70,6 +79,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuUsuari.setText("Usuari");
 
         jMenuItemCrearUsuari.setText("Crear...");
+        jMenuItemCrearUsuari.addActionListener(this::jMenuItemCrearUsuariActionPerformed);
         jMenuUsuari.add(jMenuItemCrearUsuari);
 
         jMenuItemBorrarUsuari.setText("Borrar...");
@@ -118,9 +128,43 @@ public class MainScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carregarTaula() {
+
+        javax.swing.table.DefaultTableModel model
+                = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+
+        model.setRowCount(0);
+
+        for (Lloguer lloguer : businessLogic.getLloguers()) {
+
+            model.addRow(new Object[]{
+                lloguer.getNumRegistre(),
+                lloguer.getUsuari().getNomComplet(),
+                lloguer.getJoc().getNom(),
+                lloguer.getPlataforma().getNom(),
+                lloguer.getDataInici(),
+                lloguer.getDataTornada()
+            });
+        }
+
+        jLabelLloguersTotals.setText(
+                String.valueOf(businessLogic.getLloguers().size())
+        );
+    }
+    
     private void jMenuItemCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearJocActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemCrearJocActionPerformed
+
+    private void jMenuItemCrearUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearUsuariActionPerformed
+
+        CrearUsuari finestra = new CrearUsuari(this, true, businessLogic);
+
+        finestra.setLocationRelativeTo(this);
+        finestra.setVisible(true);
+
+        carregarTaula();
+    }//GEN-LAST:event_jMenuItemCrearUsuariActionPerformed
 
     /**
      * @param args the command line arguments

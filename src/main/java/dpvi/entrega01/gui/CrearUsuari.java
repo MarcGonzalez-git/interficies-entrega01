@@ -4,20 +4,48 @@
  */
 package dpvi.entrega01.gui;
 
+import dpvi.entrega01.dto.Usuari;
+import dpvi.entrega01.logic.BusinessLogic;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alumne
  */
 public class CrearUsuari extends javax.swing.JDialog {
     
+    private BusinessLogic businessLogic;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrearUsuari.class.getName());
 
     /**
      * Creates new form CrearUsuari
      */
-    public CrearUsuari(java.awt.Frame parent, boolean modal) {
+    public CrearUsuari(java.awt.Frame parent, boolean modal, BusinessLogic businessLogic) {
         super(parent, modal);
+        
+        System.out.println(
+            CrearUsuari.class.getResource("/dpvi/entrega01/gui/Bundle.properties")
+        );
+        
         initComponents();
+        this.businessLogic = businessLogic;
+
+        jTextFieldNom.setText("");
+        jTextFieldLlinatge1.setText("");
+        jTextFieldLlinatge2.setText("");
+        jTextFieldDni.setText("");
+        jTextFieldTelefon.setText("");
+
+        jSpinnerDataRegistre.setModel(
+            new javax.swing.SpinnerDateModel()
+        );
+        jSpinnerDataRegistre.setEditor(
+            new javax.swing.JSpinner.DateEditor(jSpinnerDataRegistre, "dd/MM/yyyy")
+        );
+
+        jSpinnerDataRegistre.setEnabled(false);
     }
 
     /**
@@ -71,8 +99,10 @@ public class CrearUsuari extends javax.swing.JDialog {
 
         jButtonConfirmar.setBackground(new java.awt.Color(0, 153, 51));
         jButtonConfirmar.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jButtonConfirmar.text")); // NOI18N
+        jButtonConfirmar.addActionListener(this::jButtonConfirmarActionPerformed);
 
         jButtonCancelar.setText(org.openide.util.NbBundle.getMessage(CrearUsuari.class, "CrearUsuari.jButtonCancelar.text")); // NOI18N
+        jButtonCancelar.addActionListener(this::jButtonCancelarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,6 +172,40 @@ public class CrearUsuari extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomActionPerformed
 
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        String nom = jTextFieldNom.getText().trim();
+        String llinatge1 = jTextFieldLlinatge1.getText().trim();
+        String llinatge2 = jTextFieldLlinatge2.getText().trim();
+        String dni = jTextFieldDni.getText().trim();
+        String telefon = jTextFieldTelefon.getText().trim();
+
+        if (nom.isEmpty() || llinatge1.isEmpty() || dni.isEmpty() || telefon.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Has d'emplenar tots els camps obligatoris.", "Error", JOptionPane.ERROR_MESSAGE);
+            
+            return;
+        }
+
+        if (!Character.isUpperCase(nom.charAt(0)) || !Character.isUpperCase(llinatge1.charAt(0)) || (!llinatge2.isEmpty() && !Character.isUpperCase(llinatge2.charAt(0)))) {
+
+            JOptionPane.showMessageDialog(this, "El nom i els llinatges han de començar amb majúscula.", "Error", JOptionPane.ERROR_MESSAGE);
+            
+            return;
+        }
+
+        Usuari nouUsuari = new Usuari(nom, llinatge1, llinatge2, dni, telefon, LocalDate.now());
+
+        businessLogic.afegirUsuari(nouUsuari);
+
+        JOptionPane.showMessageDialog(this, "Usuari creat correctament.", "Informació", JOptionPane.INFORMATION_MESSAGE);
+
+        dispose();
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,7 +231,7 @@ public class CrearUsuari extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                CrearUsuari dialog = new CrearUsuari(new javax.swing.JFrame(), true);
+                CrearUsuari dialog = new CrearUsuari(new javax.swing.JFrame(), true, new BusinessLogic());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
