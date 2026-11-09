@@ -4,6 +4,15 @@
  */
 package dpvi.entrega01.gui;
 
+import dpvi.entrega01.dto.Usuari;
+import dpvi.entrega01.dto.Joc;
+import dpvi.entrega01.dto.Lloguer;
+import dpvi.entrega01.dto.Plataforma;
+import dpvi.entrega01.logic.BusinessLogic;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+
 /**
  *
  * @author Alumne
@@ -30,82 +39,95 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroupPlataformes = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabelDades = new javax.swing.JLabel();
+        jLabelNumRegistre = new javax.swing.JLabel();
+        jLabelUsuari = new javax.swing.JLabel();
+        jComboBoxUsuari = new javax.swing.JComboBox<>();
+        jLabelJoc = new javax.swing.JLabel();
+        jComboBoxJoc = new javax.swing.JComboBox<>();
+        jLabelDataInici = new javax.swing.JLabel();
+        jLabelDataTornada = new javax.swing.JLabel();
+        jTextFieldDataInici = new javax.swing.JTextField();
+        jTextFieldDataTornada = new javax.swing.JTextField();
+        jLabelPlataforma = new javax.swing.JLabel();
+        jRadioButtonPc = new javax.swing.JRadioButton();
+        jLabelUnitatsDisponibles1 = new javax.swing.JLabel();
+        jTextFieldNumRegistre = new javax.swing.JTextField();
+        jRadioButtonPs5 = new javax.swing.JRadioButton();
+        jRadioButtonXbox = new javax.swing.JRadioButton();
+        jRadioButtonSwitch = new javax.swing.JRadioButton();
+        jLabelUnitatsDisponibles2 = new javax.swing.JLabel();
+        jLabelUnitatsDisponibles3 = new javax.swing.JLabel();
+        jLabelUnitatsDisponibles4 = new javax.swing.JLabel();
+        jLabelInformacio = new javax.swing.JLabel();
         jButtonCancelar = new javax.swing.JButton();
-        jButtonCancelar1 = new javax.swing.JButton();
+        jButtonConfirmar = new javax.swing.JButton();
+        jLabelGenere = new javax.swing.JLabel();
+        jLabelInfoGenere = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel1.text")); // NOI18N
+        jLabelDades.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelDades.text")); // NOI18N
 
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel2.text")); // NOI18N
+        jLabelNumRegistre.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelNumRegistre.text")); // NOI18N
 
-        jLabel3.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel3.text")); // NOI18N
+        jLabelUsuari.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelUsuari.text")); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUsuari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel4.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel4.text")); // NOI18N
+        jLabelJoc.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelJoc.text")); // NOI18N
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxJoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel5.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel5.text")); // NOI18N
+        jLabelDataInici.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelDataInici.text")); // NOI18N
 
-        jLabel6.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel6.text")); // NOI18N
+        jLabelDataTornada.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelDataTornada.text")); // NOI18N
 
-        jTextField1.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jTextField1.text")); // NOI18N
+        jTextFieldDataInici.setEditable(false);
+        jTextFieldDataInici.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jTextFieldDataInici.text")); // NOI18N
 
-        jTextField2.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jTextField2.text")); // NOI18N
+        jTextFieldDataTornada.setEditable(false);
+        jTextFieldDataTornada.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jTextFieldDataTornada.text")); // NOI18N
 
-        jLabel7.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel7.text")); // NOI18N
+        jLabelPlataforma.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelPlataforma.text")); // NOI18N
 
-        jRadioButton1.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jRadioButton1.text")); // NOI18N
-        jRadioButton1.addActionListener(this::jRadioButton1ActionPerformed);
+        buttonGroupPlataformes.add(jRadioButtonPc);
+        jRadioButtonPc.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jRadioButtonPc.text")); // NOI18N
+        jRadioButtonPc.addActionListener(this::jRadioButtonPcActionPerformed);
 
-        jLabel8.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel8.text")); // NOI18N
+        jLabelUnitatsDisponibles1.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelUnitatsDisponibles1.text")); // NOI18N
 
-        jTextField3.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jTextField3.text")); // NOI18N
+        jTextFieldNumRegistre.setEditable(false);
+        jTextFieldNumRegistre.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jTextFieldNumRegistre.text")); // NOI18N
 
-        jRadioButton2.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jRadioButton2.text")); // NOI18N
-        jRadioButton2.addActionListener(this::jRadioButton2ActionPerformed);
+        buttonGroupPlataformes.add(jRadioButtonPs5);
+        jRadioButtonPs5.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jRadioButtonPs5.text")); // NOI18N
+        jRadioButtonPs5.addActionListener(this::jRadioButtonPs5ActionPerformed);
 
-        jRadioButton3.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jRadioButton3.text")); // NOI18N
-        jRadioButton3.addActionListener(this::jRadioButton3ActionPerformed);
+        buttonGroupPlataformes.add(jRadioButtonXbox);
+        jRadioButtonXbox.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jRadioButtonXbox.text")); // NOI18N
+        jRadioButtonXbox.addActionListener(this::jRadioButtonXboxActionPerformed);
 
-        jRadioButton4.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jRadioButton4.text")); // NOI18N
-        jRadioButton4.addActionListener(this::jRadioButton4ActionPerformed);
+        buttonGroupPlataformes.add(jRadioButtonSwitch);
+        jRadioButtonSwitch.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jRadioButtonSwitch.text")); // NOI18N
+        jRadioButtonSwitch.addActionListener(this::jRadioButtonSwitchActionPerformed);
 
-        jLabel11.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel11.text")); // NOI18N
+        jLabelUnitatsDisponibles2.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelUnitatsDisponibles2.text")); // NOI18N
 
-        jLabel12.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel12.text")); // NOI18N
+        jLabelUnitatsDisponibles3.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelUnitatsDisponibles3.text")); // NOI18N
 
-        jLabel13.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel13.text")); // NOI18N
+        jLabelUnitatsDisponibles4.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelUnitatsDisponibles4.text")); // NOI18N
 
-        jLabel14.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabel14.text")); // NOI18N
+        jLabelInformacio.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelInformacio.text")); // NOI18N
 
         jButtonCancelar.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jButtonCancelar.text")); // NOI18N
 
-        jButtonCancelar1.setBackground(new java.awt.Color(0, 153, 51));
-        jButtonCancelar1.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jButtonCancelar1.text")); // NOI18N
+        jButtonConfirmar.setBackground(new java.awt.Color(0, 153, 51));
+        jButtonConfirmar.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jButtonConfirmar.text")); // NOI18N
+
+        jLabelGenere.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelGenere.text")); // NOI18N
+
+        jLabelInfoGenere.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelInfoGenere.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,43 +136,49 @@ public class RegistrarLloguer extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox2, 0, 250, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabelDataTornada)
+                    .addComponent(jLabelDataInici)
+                    .addComponent(jLabelJoc)
+                    .addComponent(jComboBoxJoc, 0, 250, Short.MAX_VALUE)
+                    .addComponent(jLabelUsuari)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLabelNumRegistre)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3))
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2))
+                        .addComponent(jTextFieldNumRegistre))
+                    .addComponent(jLabelDades)
+                    .addComponent(jComboBoxUsuari, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldDataInici)
+                    .addComponent(jTextFieldDataTornada))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel7)
-                                .addComponent(jRadioButton1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton3)
-                                    .addComponent(jRadioButton2)
-                                    .addComponent(jRadioButton4)))
-                            .addComponent(jLabel14))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabelPlataforma)
+                                        .addComponent(jRadioButtonPc))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jRadioButtonXbox)
+                                            .addComponent(jRadioButtonPs5)
+                                            .addComponent(jRadioButtonSwitch)))
+                                    .addComponent(jLabelInformacio))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelUnitatsDisponibles1)
+                                    .addComponent(jLabelUnitatsDisponibles2)
+                                    .addComponent(jLabelUnitatsDisponibles3)
+                                    .addComponent(jLabelUnitatsDisponibles4)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelGenere)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelInfoGenere)))
                         .addContainerGap(92, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))))
@@ -160,73 +188,76 @@ public class RegistrarLloguer extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabelDades)
+                    .addComponent(jLabelPlataforma))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelNumRegistre)
+                    .addComponent(jRadioButtonPc)
+                    .addComponent(jLabelUnitatsDisponibles1)
+                    .addComponent(jTextFieldNumRegistre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabelUsuari)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton2)
-                        .addComponent(jLabel11)))
+                        .addComponent(jRadioButtonPs5)
+                        .addComponent(jLabelUnitatsDisponibles2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton3)
-                        .addComponent(jLabel12)))
+                        .addComponent(jRadioButtonXbox)
+                        .addComponent(jLabelUnitatsDisponibles3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jLabel13))
+                    .addComponent(jRadioButtonSwitch)
+                    .addComponent(jLabelUnitatsDisponibles4))
                 .addGap(4, 4, 4)
-                .addComponent(jLabel4)
+                .addComponent(jLabelJoc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
+                    .addComponent(jComboBoxJoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelInformacio))
                 .addGap(28, 28, 28)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDataInici)
+                    .addComponent(jLabelGenere)
+                    .addComponent(jLabelInfoGenere))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldDataInici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel6)
+                .addComponent(jLabelDataTornada)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldDataTornada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jRadioButtonPcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPcActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_jRadioButtonPcActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void jRadioButtonPs5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPs5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_jRadioButtonPs5ActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void jRadioButtonXboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonXboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_jRadioButtonXboxActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void jRadioButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSwitchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_jRadioButtonSwitchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,27 +299,29 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupPlataformes;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonCancelar1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jButtonConfirmar;
+    private javax.swing.JComboBox<String> jComboBoxJoc;
+    private javax.swing.JComboBox<String> jComboBoxUsuari;
+    private javax.swing.JLabel jLabelDades;
+    private javax.swing.JLabel jLabelDataInici;
+    private javax.swing.JLabel jLabelDataTornada;
+    private javax.swing.JLabel jLabelGenere;
+    private javax.swing.JLabel jLabelInfoGenere;
+    private javax.swing.JLabel jLabelInformacio;
+    private javax.swing.JLabel jLabelJoc;
+    private javax.swing.JLabel jLabelNumRegistre;
+    private javax.swing.JLabel jLabelPlataforma;
+    private javax.swing.JLabel jLabelUnitatsDisponibles1;
+    private javax.swing.JLabel jLabelUnitatsDisponibles2;
+    private javax.swing.JLabel jLabelUnitatsDisponibles3;
+    private javax.swing.JLabel jLabelUnitatsDisponibles4;
+    private javax.swing.JLabel jLabelUsuari;
+    private javax.swing.JRadioButton jRadioButtonPc;
+    private javax.swing.JRadioButton jRadioButtonPs5;
+    private javax.swing.JRadioButton jRadioButtonSwitch;
+    private javax.swing.JRadioButton jRadioButtonXbox;
+    private javax.swing.JTextField jTextFieldDataInici;
+    private javax.swing.JTextField jTextFieldDataTornada;
+    private javax.swing.JTextField jTextFieldNumRegistre;
     // End of variables declaration//GEN-END:variables
 }
