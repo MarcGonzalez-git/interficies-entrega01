@@ -28,21 +28,97 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jMenuBarMain = new javax.swing.JMenuBar();
+        jMenuLloguer = new javax.swing.JMenu();
+        jMenuItemRegistrar = new javax.swing.JMenuItem();
+        jMenuItemTornar = new javax.swing.JMenuItem();
+        jMenuUsuari = new javax.swing.JMenu();
+        jMenuItemCrearUsuari = new javax.swing.JMenuItem();
+        jMenuItemBorrarUsuari = new javax.swing.JMenuItem();
+        jMenuJoc = new javax.swing.JMenu();
+        jMenuItemCrearJoc = new javax.swing.JMenuItem();
+        jMenuItemBorrarJoc = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Núm. registre", "Titol del joc", "Usuari", "Plataforma", "Data d'inici", "Data de tornada", "Gènere"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setText("Total de lloguers: ");
+
+        jMenuLloguer.setText("Lloguer");
+
+        jMenuItemRegistrar.setText("Registrar...");
+        jMenuLloguer.add(jMenuItemRegistrar);
+
+        jMenuItemTornar.setText("Tornar...");
+        jMenuLloguer.add(jMenuItemTornar);
+
+        jMenuBarMain.add(jMenuLloguer);
+
+        jMenuUsuari.setText("Usuari");
+
+        jMenuItemCrearUsuari.setText("Crear...");
+        jMenuUsuari.add(jMenuItemCrearUsuari);
+
+        jMenuItemBorrarUsuari.setText("Borrar...");
+        jMenuUsuari.add(jMenuItemBorrarUsuari);
+
+        jMenuBarMain.add(jMenuUsuari);
+
+        jMenuJoc.setText("Joc");
+
+        jMenuItemCrearJoc.setText("Crear...");
+        jMenuItemCrearJoc.addActionListener(this::jMenuItemCrearJocActionPerformed);
+        jMenuJoc.add(jMenuItemCrearJoc);
+
+        jMenuItemBorrarJoc.setText("Borrar...");
+        jMenuJoc.add(jMenuItemBorrarJoc);
+
+        jMenuBarMain.add(jMenuJoc);
+
+        setJMenuBar(jMenuBarMain);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearJocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemCrearJocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +146,18 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar jMenuBarMain;
+    private javax.swing.JMenuItem jMenuItemBorrarJoc;
+    private javax.swing.JMenuItem jMenuItemBorrarUsuari;
+    private javax.swing.JMenuItem jMenuItemCrearJoc;
+    private javax.swing.JMenuItem jMenuItemCrearUsuari;
+    private javax.swing.JMenuItem jMenuItemRegistrar;
+    private javax.swing.JMenuItem jMenuItemTornar;
+    private javax.swing.JMenu jMenuJoc;
+    private javax.swing.JMenu jMenuLloguer;
+    private javax.swing.JMenu jMenuUsuari;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
