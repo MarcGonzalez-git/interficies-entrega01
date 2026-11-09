@@ -31,6 +31,7 @@ public class MainScreen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabelLloguersTotals = new javax.swing.JLabel();
         jMenuBarMain = new javax.swing.JMenuBar();
         jMenuLloguer = new javax.swing.JMenu();
         jMenuItemRegistrar = new javax.swing.JMenuItem();
@@ -46,10 +47,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Núm. registre", "Titol del joc", "Usuari", "Plataforma", "Data d'inici", "Data de tornada", "Gènere"
@@ -102,6 +100,8 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelLloguersTotals)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,8 +109,10 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelLloguersTotals))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,6 +149,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelLloguersTotals;
     private javax.swing.JMenuBar jMenuBarMain;
     private javax.swing.JMenuItem jMenuItemBorrarJoc;
     private javax.swing.JMenuItem jMenuItemBorrarUsuari;
