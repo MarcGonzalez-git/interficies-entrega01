@@ -92,6 +92,36 @@ public class BusinessLogic {
         lloguer.getPlataforma().augmentarUnitat();
     }
     
+    public void borrarUsuari(Usuari usuari) {
+
+        if (usuari == null || !usuaris.contains(usuari)) {
+            throw new IllegalArgumentException("L'usuari seleccionat no és vàlid.");
+        }
+
+        for (Lloguer lloguer : lloguers) {
+            if (lloguer.getUsuari() == usuari && !lloguer.isRetornat()) {
+                throw new IllegalArgumentException("No es pot eliminar aquest usuari perquè té lloguers actius.");
+            }
+        }
+
+        usuaris.remove(usuari);
+    }
+    
+    public void borrarJoc(Joc joc) {
+
+        if (joc == null || !jocs.contains(joc)) {
+            throw new IllegalArgumentException("El joc seleccionat no és vàlid.");
+        }
+
+        for (Lloguer lloguer : lloguers) {
+            if (lloguer.getJoc() == joc && !lloguer.isRetornat()) {
+                throw new IllegalArgumentException("No es pot eliminar aquest joc perquè té lloguers actius.");
+            }
+        }
+
+        jocs.remove(joc);
+    }
+    
     private void carregarDadesInicials() {
         
         //Usuaris

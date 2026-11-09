@@ -87,6 +87,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuUsuari.add(jMenuItemCrearUsuari);
 
         jMenuItemBorrarUsuari.setText("Borrar");
+        jMenuItemBorrarUsuari.addActionListener(this::jMenuItemBorrarUsuariActionPerformed);
         jMenuUsuari.add(jMenuItemBorrarUsuari);
 
         jMenuBarMain.add(jMenuUsuari);
@@ -98,6 +99,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuJoc.add(jMenuItemCrearJoc);
 
         jMenuItemBorrarJoc.setText("Borrar");
+        jMenuItemBorrarJoc.addActionListener(this::jMenuItemBorrarJocActionPerformed);
         jMenuJoc.add(jMenuItemBorrarJoc);
 
         jMenuBarMain.add(jMenuJoc);
@@ -207,6 +209,24 @@ public class MainScreen extends javax.swing.JFrame {
 
         carregarTaula();
     }//GEN-LAST:event_jMenuItemRegistrarActionPerformed
+
+    private void jMenuItemBorrarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBorrarUsuariActionPerformed
+        BorrarUsuari finestra = new BorrarUsuari(this, true, businessLogic);
+
+        finestra.setLocationRelativeTo(this);
+        finestra.setVisible(true);
+
+        carregarTaula();
+    }//GEN-LAST:event_jMenuItemBorrarUsuariActionPerformed
+
+    private void jMenuItemBorrarJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBorrarJocActionPerformed
+        BorrarJoc finestra = new BorrarJoc(this, true, businessLogic);
+
+        finestra.setLocationRelativeTo(this);
+        finestra.setVisible(true);
+
+        carregarTaula();
+    }//GEN-LAST:event_jMenuItemBorrarJocActionPerformed
 
     /**
      * @param args the command line arguments
