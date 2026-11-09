@@ -6,6 +6,7 @@ package dpvi.entrega01.gui;
 
 import dpvi.entrega01.logic.BusinessLogic;
 import dpvi.entrega01.dto.Lloguer;
+import java.time.LocalDate;
 
 /**
  *
@@ -67,8 +68,10 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel1.setText("Total de lloguers: ");
 
         jMenuLloguer.setText("Lloguer");
+        jMenuLloguer.addActionListener(this::jMenuLloguerActionPerformed);
 
         jMenuItemRegistrar.setText("Registrar");
+        jMenuItemRegistrar.addActionListener(this::jMenuItemRegistrarActionPerformed);
         jMenuLloguer.add(jMenuItemRegistrar);
 
         jMenuItemTornar.setText("Tornar");
@@ -131,12 +134,21 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void carregarTaula() {
 
-        javax.swing.table.DefaultTableModel model
-                = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
 
         model.setRowCount(0);
 
         for (Lloguer lloguer : businessLogic.getLloguers()) {
+
+            String estat;
+
+            if (lloguer.isRetornat()) {
+                estat = "Retornat";
+            } else if (lloguer.getDataTornada().isBefore(LocalDate.now())) {
+                estat = "Fora de termini";
+            } else {
+                estat = "Actiu";
+            }
 
             model.addRow(new Object[]{
                 lloguer.getNumRegistre(),
@@ -144,7 +156,8 @@ public class MainScreen extends javax.swing.JFrame {
                 lloguer.getJoc().getNom(),
                 lloguer.getPlataforma().getNom(),
                 lloguer.getDataInici(),
-                lloguer.getDataTornada()
+                lloguer.getDataTornada(),
+                estat
             });
         }
 
@@ -175,6 +188,20 @@ public class MainScreen extends javax.swing.JFrame {
     private void jMenuItemTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTornarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemTornarActionPerformed
+
+    private void jMenuLloguerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLloguerActionPerformed
+        
+    }//GEN-LAST:event_jMenuLloguerActionPerformed
+
+    private void jMenuItemRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarActionPerformed
+        
+        RegistrarLloguer finestra = new RegistrarLloguer(this, true, businessLogic);
+
+        finestra.setLocationRelativeTo(this);
+        finestra.setVisible(true);
+
+        carregarTaula();
+    }//GEN-LAST:event_jMenuItemRegistrarActionPerformed
 
     /**
      * @param args the command line arguments

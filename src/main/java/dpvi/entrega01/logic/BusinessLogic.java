@@ -41,6 +41,43 @@ public class BusinessLogic {
         jocs.add(joc);
     }
     
+    public void registrarLloguer(Usuari usuari, Joc joc, Plataforma plataforma) {
+
+        if (usuari == null || joc == null || plataforma == null) {
+            throw new IllegalArgumentException("Has de seleccionar un usuari, un joc i una plataforma.");
+        }
+
+        if (!usuaris.contains(usuari) || !jocs.contains(joc) || !joc.getPlataformes().contains(plataforma)) {
+            throw new IllegalArgumentException("Les dades seleccionades no són vàlides.");
+        }
+
+        if (plataforma.getUnitats() <= 0) {
+            throw new IllegalArgumentException("No queden unitats disponibles d'aquesta plataforma.");
+        }
+
+        for (Lloguer lloguer : lloguers) {
+            if (!lloguer.isRetornat() && lloguer.getUsuari() == usuari && lloguer.getJoc() == joc && lloguer.getPlataforma() == plataforma) {
+                throw new IllegalArgumentException("Aquest usuari ja té un lloguer actiu del mateix joc i plataforma.");
+            }
+        }
+
+        int numRegistre = 1;
+
+        for (Lloguer lloguer : lloguers) {
+            if (lloguer.getNumRegistre() >= numRegistre) {
+                numRegistre = lloguer.getNumRegistre() + 1;
+            }
+        }
+
+        LocalDate dataInici = LocalDate.now();
+        LocalDate dataTornada = dataInici.plusDays(7);
+
+        Lloguer nouLloguer = new Lloguer(numRegistre, usuari, joc, dataInici, dataTornada, plataforma);
+
+        plataforma.reduirUnitat();
+        lloguers.add(nouLloguer);
+    }
+    
     private void carregarDadesInicials() {
         
         //Usuaris

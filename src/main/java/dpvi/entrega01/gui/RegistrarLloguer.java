@@ -19,14 +19,26 @@ import javax.swing.JRadioButton;
  */
 public class RegistrarLloguer extends javax.swing.JDialog {
     
+    private BusinessLogic businessLogic;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarLloguer.class.getName());
 
     /**
      * Creates new form RegistrarLloguer
      */
     public RegistrarLloguer(java.awt.Frame parent, boolean modal) {
+        this(parent, modal, null);
+    }
+
+    public RegistrarLloguer(java.awt.Frame parent, boolean modal, BusinessLogic businessLogic) {
         super(parent, modal);
         initComponents();
+
+        this.businessLogic = businessLogic;
+
+        if (businessLogic != null) {
+            carregarDades();
+        }
     }
 
     /**
@@ -78,6 +90,7 @@ public class RegistrarLloguer extends javax.swing.JDialog {
         jLabelJoc.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelJoc.text")); // NOI18N
 
         jComboBoxJoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxJoc.addActionListener(this::jComboBoxJocActionPerformed);
 
         jLabelDataInici.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelDataInici.text")); // NOI18N
 
@@ -121,9 +134,11 @@ public class RegistrarLloguer extends javax.swing.JDialog {
         jLabelInformacio.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelInformacio.text")); // NOI18N
 
         jButtonCancelar.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jButtonCancelar.text")); // NOI18N
+        jButtonCancelar.addActionListener(this::jButtonCancelarActionPerformed);
 
         jButtonConfirmar.setBackground(new java.awt.Color(0, 153, 51));
         jButtonConfirmar.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jButtonConfirmar.text")); // NOI18N
+        jButtonConfirmar.addActionListener(this::jButtonConfirmarActionPerformed);
 
         jLabelGenere.setText(org.openide.util.NbBundle.getMessage(RegistrarLloguer.class, "RegistrarLloguer.jLabelGenere.text")); // NOI18N
 
@@ -243,6 +258,96 @@ public class RegistrarLloguer extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carregarDades() {
+
+        jComboBoxUsuari.removeAllItems();
+        jComboBoxJoc.removeAllItems();
+
+        for (Usuari usuari : businessLogic.getUsuaris()) {
+            jComboBoxUsuari.addItem(usuari.getNomComplet());
+        }
+
+        for (Joc joc : businessLogic.getJocs()) {
+            jComboBoxJoc.addItem(joc.getNom());
+        }
+
+        int numRegistre = 1;
+
+        for (Lloguer lloguer : businessLogic.getLloguers()) {
+            if (lloguer.getNumRegistre() >= numRegistre) {
+                numRegistre = lloguer.getNumRegistre() + 1;
+            }
+        }
+
+        jTextFieldNumRegistre.setText(String.valueOf(numRegistre));
+
+        LocalDate avui = LocalDate.now();
+
+        jTextFieldDataInici.setText(avui.toString());
+        jTextFieldDataTornada.setText(avui.plusDays(7).toString());
+
+        actualitzarPlataformes();
+    }
+    
+    private Plataforma cercarPlataforma(Joc joc, String nom) {
+
+        for (Plataforma plataforma : joc.getPlataformes()) {
+            if (plataforma.getNom().equalsIgnoreCase(nom)) {
+                return plataforma;
+            }
+        }
+
+        return null;
+    }
+    
+    private void mostrarPlataforma(Plataforma plataforma, JRadioButton radioButton, javax.swing.JLabel label) {
+
+        if (plataforma == null) {
+            radioButton.setEnabled(false);
+            label.setText("No disponible");
+        } else {
+            int unitats = plataforma.getUnitats();
+
+            radioButton.setEnabled(unitats > 0);
+            label.setText(unitats + " unitats");
+        }
+    }
+    
+    private void actualitzarPlataformes() {
+
+        buttonGroupPlataformes.clearSelection();
+
+        jRadioButtonPc.setEnabled(false);
+        jRadioButtonPs5.setEnabled(false);
+        jRadioButtonXbox.setEnabled(false);
+        jRadioButtonSwitch.setEnabled(false);
+
+        jLabelUnitatsDisponibles1.setText("No disponible");
+        jLabelUnitatsDisponibles2.setText("No disponible");
+        jLabelUnitatsDisponibles3.setText("No disponible");
+        jLabelUnitatsDisponibles4.setText("No disponible");
+
+        jLabelInfoGenere.setText("-");
+
+        int index = jComboBoxJoc.getSelectedIndex();
+
+        if (businessLogic == null || index < 0 || index >= businessLogic.getJocs().size()) {
+            return;
+        }
+
+        Joc joc = businessLogic.getJocs().get(index);
+
+        jLabelInfoGenere.setText(joc.getGenere());
+
+        mostrarPlataforma(cercarPlataforma(joc, "PC"), jRadioButtonPc, jLabelUnitatsDisponibles1);
+
+        mostrarPlataforma(cercarPlataforma(joc, "PS5"), jRadioButtonPs5, jLabelUnitatsDisponibles2);
+
+        mostrarPlataforma(cercarPlataforma(joc, "Xbox"), jRadioButtonXbox, jLabelUnitatsDisponibles3);
+
+        mostrarPlataforma(cercarPlataforma(joc, "Switch 2"), jRadioButtonSwitch, jLabelUnitatsDisponibles4);
+    }
+    
     private void jRadioButtonPcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPcActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonPcActionPerformed
@@ -258,6 +363,57 @@ public class RegistrarLloguer extends javax.swing.JDialog {
     private void jRadioButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSwitchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonSwitchActionPerformed
+
+    private void jComboBoxJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJocActionPerformed
+        actualitzarPlataformes();
+    }//GEN-LAST:event_jComboBoxJocActionPerformed
+
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        int indexUsuari = jComboBoxUsuari.getSelectedIndex();
+        int indexJoc = jComboBoxJoc.getSelectedIndex();
+
+        if (indexUsuari == -1 || indexJoc == -1) {
+            JOptionPane.showMessageDialog(this, "Has de seleccionar un usuari i un joc.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Usuari usuari = businessLogic.getUsuaris().get(indexUsuari);
+        Joc joc = businessLogic.getJocs().get(indexJoc);
+
+        String nomPlataforma = null;
+
+        if (jRadioButtonPc.isSelected()) {
+            nomPlataforma = "PC";
+        } else if (jRadioButtonPs5.isSelected()) {
+            nomPlataforma = "PS5";
+        } else if (jRadioButtonXbox.isSelected()) {
+            nomPlataforma = "Xbox";
+        } else if (jRadioButtonSwitch.isSelected()) {
+            nomPlataforma = "Switch 2";
+        }
+
+        if (nomPlataforma == null) {
+            JOptionPane.showMessageDialog(this, "Has de seleccionar una plataforma.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Plataforma plataforma = cercarPlataforma(joc, nomPlataforma);
+
+        try {
+            businessLogic.registrarLloguer(usuari, joc, plataforma);
+
+            JOptionPane.showMessageDialog(this, "Lloguer registrat correctament.", "Informació", JOptionPane.INFORMATION_MESSAGE);
+
+            dispose();
+
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
