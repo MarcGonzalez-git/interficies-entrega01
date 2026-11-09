@@ -1,6 +1,6 @@
 package dpvi.entrega01.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,9 +13,9 @@ public class Usuari {
     private String llintage2;
     private String dni;
     private String telefon;
-    private Date data;
+    private LocalDate data;
 
-    public Usuari(String nom, String llinatge1, String llintage2, String dni, String telefon, Date data) {
+    public Usuari(String nom, String llinatge1, String llintage2, String dni, String telefon, LocalDate data) {
         this.nom = nom;
         this.llinatge1 = llinatge1;
         this.llintage2 = llintage2;
@@ -64,12 +64,21 @@ public class Usuari {
         this.telefon = telefon;
     }
     
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
+    }
+    
+    public String getNomComplet() {
+        return nom + " " + llinatge1;
+    }
+
+    @Override
+    public String toString() {
+        return getNomComplet();
     }
     
 }

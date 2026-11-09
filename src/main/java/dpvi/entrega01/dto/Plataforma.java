@@ -30,4 +30,14 @@ public class Plataforma {
         this.unitats = unitats;
     }
     
+    public void reduirUnitat() {
+        if (unitats > 0) {
+            unitats--;
+        }
+    }
+
+    public void augmentarUnitat() {
+        unitats++;
+    }
+    
 }

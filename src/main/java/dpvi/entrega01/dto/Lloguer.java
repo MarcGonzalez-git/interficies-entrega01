@@ -1,6 +1,6 @@
 package dpvi.entrega01.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -11,11 +11,11 @@ public class Lloguer {
     private int numRegistre;
     private Usuari usuari;
     private Joc joc;
-    private Date dataInici;
-    private Date dataTornada;
+    private LocalDate dataInici;
+    private LocalDate dataTornada;
     private Plataforma plataforma;
 
-    public Lloguer(int numRegistre, Usuari usuari, Joc joc, Date dataInici, Date dataTornada, Plataforma plataforma) {
+    public Lloguer(int numRegistre, Usuari usuari, Joc joc, LocalDate dataInici, LocalDate dataTornada, Plataforma plataforma) {
         this.numRegistre = numRegistre;
         this.usuari = usuari;
         this.joc = joc;
@@ -48,19 +48,19 @@ public class Lloguer {
         this.joc = joc;
     }
 
-    public Date getDataInici() {
+    public LocalDate getDataInici() {
         return dataInici;
     }
 
-    public void setDataInici(Date dataInici) {
+    public void setDataInici(LocalDate dataInici) {
         this.dataInici = dataInici;
     }
 
-    public Date getDataTornada() {
+    public LocalDate getDataTornada() {
         return dataTornada;
     }
 
-    public void setDataTornada(Date dataTornada) {
+    public void setDataTornada(LocalDate dataTornada) {
         this.dataTornada = dataTornada;
     }
 

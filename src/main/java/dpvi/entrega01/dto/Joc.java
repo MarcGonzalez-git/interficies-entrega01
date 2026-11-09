@@ -10,12 +10,12 @@ public class Joc {
     
     private String nom;
     private String genere;
-    private ArrayList<Plataforma> plataforma;
+    private ArrayList<Plataforma> plataformes;
 
-    public Joc(String nom, String genere, ArrayList<Plataforma> plataforma) {
+    public Joc(String nom, String genere, ArrayList<Plataforma> plataformes) {
         this.nom = nom;
         this.genere = genere;
-        this.plataforma = plataforma;
+        this.plataformes = plataformes;
     }
 
     public String getNom() {
@@ -34,12 +34,26 @@ public class Joc {
         this.genere = genere;
     }
 
-    public ArrayList<Plataforma> getPlataforma() {
-        return plataforma;
+    public ArrayList<Plataforma> getPlataformes() {
+        return plataformes;
     }
 
-    public void setPlataforma(ArrayList<Plataforma> plataforma) {
-        this.plataforma = plataforma;
+    public void afegirPlataforma(Plataforma plataforma) {
+        plataformes.add(plataforma);
+    }
+
+    public boolean tePlataforma(String nomPlataforma) {
+        for (Plataforma plataforma : plataformes) {
+            if (plataforma.getNom().equals(nomPlataforma)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return nom;
     }
     
 }
