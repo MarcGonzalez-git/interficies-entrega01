@@ -11,13 +11,16 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemRegistrar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar..."/>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemTornar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tornar..."/>
+                <Property name="text" type="java.lang.String" value="Tornar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemTornarActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -28,7 +31,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCrearUsuari">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Crear..."/>
+                <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCrearUsuariActionPerformed"/>
@@ -36,7 +39,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBorrarUsuari">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Borrar..."/>
+                <Property name="text" type="java.lang.String" value="Borrar"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -48,7 +51,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCrearJoc">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Crear..."/>
+                <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCrearJocActionPerformed"/>
@@ -56,7 +59,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBorrarJoc">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Borrar..."/>
+                <Property name="text" type="java.lang.String" value="Borrar"/>
               </Properties>
             </MenuItem>
           </SubComponents>

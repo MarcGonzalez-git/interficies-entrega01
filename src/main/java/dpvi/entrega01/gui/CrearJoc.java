@@ -4,20 +4,48 @@
  */
 package dpvi.entrega01.gui;
 
+import dpvi.entrega01.dto.Joc;
+import dpvi.entrega01.dto.Plataforma;
+import dpvi.entrega01.logic.BusinessLogic;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alumne
  */
 public class CrearJoc extends javax.swing.JDialog {
     
+    private BusinessLogic businessLogic;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrearJoc.class.getName());
 
     /**
      * Creates new form CrearJoc
      */
-    public CrearJoc(java.awt.Frame parent, boolean modal) {
+    public CrearJoc(java.awt.Frame parent, boolean modal, BusinessLogic businessLogic) {
         super(parent, modal);
         initComponents();
+
+        this.businessLogic = businessLogic;
+
+        jTextFieldNom.setText("");
+
+        jComboBoxGenere.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[]{"Acció", "Aventura", "Esports", "Estratègia", "RPG", "Simulació", "Altres"}
+        ));
+
+        String[] unitats = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+
+        jComboBoxUnitats1.setModel(new javax.swing.DefaultComboBoxModel<>(unitats));
+        jComboBoxUnitats2.setModel(new javax.swing.DefaultComboBoxModel<>(unitats));
+        jComboBoxUnitats3.setModel(new javax.swing.DefaultComboBoxModel<>(unitats));
+        jComboBoxUnitats4.setModel(new javax.swing.DefaultComboBoxModel<>(unitats));
+
+        jComboBoxUnitats1.setEnabled(false);
+        jComboBoxUnitats2.setEnabled(false);
+        jComboBoxUnitats3.setEnabled(false);
+        jComboBoxUnitats4.setEnabled(false);
     }
 
     /**
@@ -33,21 +61,21 @@ public class CrearJoc extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldNom = new javax.swing.JTextField();
         jComboBoxGenere = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        jLabelPlataformes = new javax.swing.JLabel();
+        jComboBoxUnitats1 = new javax.swing.JComboBox<>();
+        jComboBoxUnitats2 = new javax.swing.JComboBox<>();
+        jComboBoxUnitats3 = new javax.swing.JComboBox<>();
+        jComboBoxUnitats4 = new javax.swing.JComboBox<>();
+        jLabelUnitats1 = new javax.swing.JLabel();
+        jLabelUnitats2 = new javax.swing.JLabel();
+        jLabelUnitats3 = new javax.swing.JLabel();
+        jLabelUnitats4 = new javax.swing.JLabel();
+        jCheckBoxPS5 = new javax.swing.JCheckBox();
+        jCheckBoxXbox = new javax.swing.JCheckBox();
+        jCheckBoxPc = new javax.swing.JCheckBox();
+        jCheckBoxSwitch = new javax.swing.JCheckBox();
         jButtonCancelar = new javax.swing.JButton();
-        jButtonCancelar1 = new javax.swing.JButton();
+        jButtonConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,37 +88,42 @@ public class CrearJoc extends javax.swing.JDialog {
 
         jComboBoxGenere.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabel1.text")); // NOI18N
+        jLabelPlataformes.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabelPlataformes.text")); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUnitats1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUnitats2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUnitats3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUnitats4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel3.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabel3.text")); // NOI18N
+        jLabelUnitats1.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabelUnitats1.text")); // NOI18N
 
-        jLabel4.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabel4.text")); // NOI18N
+        jLabelUnitats2.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabelUnitats2.text")); // NOI18N
 
-        jLabel5.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabel5.text")); // NOI18N
+        jLabelUnitats3.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabelUnitats3.text")); // NOI18N
 
-        jLabel6.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabel6.text")); // NOI18N
+        jLabelUnitats4.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jLabelUnitats4.text")); // NOI18N
 
-        jCheckBox1.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jCheckBox1.text")); // NOI18N
+        jCheckBoxPS5.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jCheckBoxPS5.text")); // NOI18N
+        jCheckBoxPS5.addActionListener(this::jCheckBoxPS5ActionPerformed);
 
-        jCheckBox2.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jCheckBox2.text")); // NOI18N
-        jCheckBox2.addActionListener(this::jCheckBox2ActionPerformed);
+        jCheckBoxXbox.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jCheckBoxXbox.text")); // NOI18N
+        jCheckBoxXbox.addActionListener(this::jCheckBoxXboxActionPerformed);
 
-        jCheckBox3.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jCheckBox3.text")); // NOI18N
+        jCheckBoxPc.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jCheckBoxPc.text")); // NOI18N
+        jCheckBoxPc.addActionListener(this::jCheckBoxPcActionPerformed);
 
-        jCheckBox4.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jCheckBox4.text")); // NOI18N
+        jCheckBoxSwitch.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jCheckBoxSwitch.text")); // NOI18N
+        jCheckBoxSwitch.addActionListener(this::jCheckBoxSwitchActionPerformed);
 
         jButtonCancelar.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jButtonCancelar.text")); // NOI18N
+        jButtonCancelar.addActionListener(this::jButtonCancelarActionPerformed);
 
-        jButtonCancelar1.setBackground(new java.awt.Color(0, 153, 51));
-        jButtonCancelar1.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jButtonCancelar1.text")); // NOI18N
+        jButtonConfirmar.setBackground(new java.awt.Color(0, 153, 51));
+        jButtonConfirmar.setText(org.openide.util.NbBundle.getMessage(CrearJoc.class, "CrearJoc.jButtonConfirmar.text")); // NOI18N
+        jButtonConfirmar.addActionListener(this::jButtonConfirmarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,7 +133,7 @@ public class CrearJoc extends javax.swing.JDialog {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelPlataformes)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelNom)
@@ -112,27 +145,27 @@ public class CrearJoc extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox3)
-                                    .addComponent(jCheckBox4))
+                                    .addComponent(jCheckBoxPS5)
+                                    .addComponent(jCheckBoxXbox)
+                                    .addComponent(jCheckBoxPc)
+                                    .addComponent(jCheckBoxSwitch))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jComboBoxGenere, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6))
+                                            .addComponent(jLabelUnitats1)
+                                            .addComponent(jLabelUnitats2)
+                                            .addComponent(jLabelUnitats3)
+                                            .addComponent(jLabelUnitats4))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBox4, 0, 90, Short.MAX_VALUE)
-                                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                            .addComponent(jComboBoxUnitats4, 0, 90, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxUnitats3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxUnitats2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxUnitats1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(16, Short.MAX_VALUE))))
@@ -149,31 +182,31 @@ public class CrearJoc extends javax.swing.JDialog {
                     .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxGenere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(jLabelPlataformes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jComboBoxUnitats1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelUnitats1)
+                    .addComponent(jCheckBoxPS5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jCheckBox2))
+                    .addComponent(jComboBoxUnitats2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelUnitats2)
+                    .addComponent(jCheckBoxXbox))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jCheckBox3))
+                    .addComponent(jComboBoxUnitats3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelUnitats3)
+                    .addComponent(jCheckBoxPc))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jCheckBox4))
+                    .addComponent(jComboBoxUnitats4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelUnitats4)
+                    .addComponent(jCheckBoxSwitch))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -184,9 +217,107 @@ public class CrearJoc extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    private void jCheckBoxXboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxXboxActionPerformed
+        jComboBoxUnitats2.setEnabled(jCheckBoxXbox.isSelected());
+
+        if (!jCheckBoxXbox.isSelected()) {
+            jComboBoxUnitats2.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jCheckBoxXboxActionPerformed
+
+    private void jCheckBoxPS5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPS5ActionPerformed
+        jComboBoxUnitats1.setEnabled(jCheckBoxPS5.isSelected());
+
+        if (!jCheckBoxPS5.isSelected()) {
+            jComboBoxUnitats1.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jCheckBoxPS5ActionPerformed
+
+    private void jCheckBoxPcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxPcActionPerformed
+        jComboBoxUnitats3.setEnabled(jCheckBoxPc.isSelected());
+
+        if (!jCheckBoxPc.isSelected()) {
+            jComboBoxUnitats3.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jCheckBoxPcActionPerformed
+
+    private void jCheckBoxSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSwitchActionPerformed
+        jComboBoxUnitats4.setEnabled(jCheckBoxSwitch.isSelected());
+
+        if (!jCheckBoxSwitch.isSelected()) {
+            jComboBoxUnitats4.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jCheckBoxSwitchActionPerformed
+
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        String nom = jTextFieldNom.getText().trim();
+        String genere = jComboBoxGenere.getSelectedItem().toString();
+
+        if (nom.isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Has d'introduir el nom del joc.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+            
+        }
+
+        if (!Character.isUpperCase(nom.charAt(0))) {
+            
+            JOptionPane.showMessageDialog(this, "El nom del joc ha de començar amb majúscula.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+            
+        }
+
+        ArrayList<Plataforma> plataformes = new ArrayList<>();
+
+        if (jCheckBoxPS5.isSelected()) {
+            int unitats = Integer.parseInt(jComboBoxUnitats1.getSelectedItem().toString());
+
+            if (unitats > 0) {
+                plataformes.add(new Plataforma("PS5", unitats));
+            }
+        }
+
+        if (jCheckBoxXbox.isSelected()) {
+            int unitats = Integer.parseInt(jComboBoxUnitats2.getSelectedItem().toString());
+
+            if (unitats > 0) {
+                plataformes.add(new Plataforma("Xbox", unitats));
+            }
+        }
+
+        if (jCheckBoxPc.isSelected()) {
+            int unitats = Integer.parseInt(jComboBoxUnitats3.getSelectedItem().toString());
+
+            if (unitats > 0) {
+                plataformes.add(new Plataforma("PC", unitats));
+            }
+        }
+
+        if (jCheckBoxSwitch.isSelected()) {
+            int unitats = Integer.parseInt(jComboBoxUnitats4.getSelectedItem().toString());
+
+            if (unitats > 0) {
+                plataformes.add(new Plataforma("Switch 2", unitats));
+            }
+        }
+
+        if (plataformes.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Has de seleccionar almenys una plataforma amb unitats disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Joc nouJoc = new Joc(nom, genere, plataformes);
+
+        businessLogic.afegirJoc(nouJoc);
+
+        JOptionPane.showMessageDialog(this, "Joc creat correctament.", "Informació", JOptionPane.INFORMATION_MESSAGE);
+
+        dispose();
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,7 +344,7 @@ public class CrearJoc extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                CrearJoc dialog = new CrearJoc(new javax.swing.JFrame(), true);
+                CrearJoc dialog = new CrearJoc(new javax.swing.JFrame(), true, new BusinessLogic());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -227,23 +358,23 @@ public class CrearJoc extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonCancelar1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JButton jButtonConfirmar;
+    private javax.swing.JCheckBox jCheckBoxPS5;
+    private javax.swing.JCheckBox jCheckBoxPc;
+    private javax.swing.JCheckBox jCheckBoxSwitch;
+    private javax.swing.JCheckBox jCheckBoxXbox;
     private javax.swing.JComboBox<String> jComboBoxGenere;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> jComboBoxUnitats1;
+    private javax.swing.JComboBox<String> jComboBoxUnitats2;
+    private javax.swing.JComboBox<String> jComboBoxUnitats3;
+    private javax.swing.JComboBox<String> jComboBoxUnitats4;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelNom;
+    private javax.swing.JLabel jLabelPlataformes;
+    private javax.swing.JLabel jLabelUnitats1;
+    private javax.swing.JLabel jLabelUnitats2;
+    private javax.swing.JLabel jLabelUnitats3;
+    private javax.swing.JLabel jLabelUnitats4;
     private javax.swing.JTextField jTextFieldNom;
     // End of variables declaration//GEN-END:variables
 }

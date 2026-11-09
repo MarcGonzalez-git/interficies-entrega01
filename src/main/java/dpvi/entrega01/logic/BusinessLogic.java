@@ -37,6 +37,10 @@ public class BusinessLogic {
         usuaris.add(usuari);
     }
     
+    public void afegirJoc(Joc joc) {
+        jocs.add(joc);
+    }
+    
     private void carregarDadesInicials() {
         
         //Usuaris

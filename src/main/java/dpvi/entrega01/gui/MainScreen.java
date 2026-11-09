@@ -68,32 +68,33 @@ public class MainScreen extends javax.swing.JFrame {
 
         jMenuLloguer.setText("Lloguer");
 
-        jMenuItemRegistrar.setText("Registrar...");
+        jMenuItemRegistrar.setText("Registrar");
         jMenuLloguer.add(jMenuItemRegistrar);
 
-        jMenuItemTornar.setText("Tornar...");
+        jMenuItemTornar.setText("Tornar");
+        jMenuItemTornar.addActionListener(this::jMenuItemTornarActionPerformed);
         jMenuLloguer.add(jMenuItemTornar);
 
         jMenuBarMain.add(jMenuLloguer);
 
         jMenuUsuari.setText("Usuari");
 
-        jMenuItemCrearUsuari.setText("Crear...");
+        jMenuItemCrearUsuari.setText("Crear");
         jMenuItemCrearUsuari.addActionListener(this::jMenuItemCrearUsuariActionPerformed);
         jMenuUsuari.add(jMenuItemCrearUsuari);
 
-        jMenuItemBorrarUsuari.setText("Borrar...");
+        jMenuItemBorrarUsuari.setText("Borrar");
         jMenuUsuari.add(jMenuItemBorrarUsuari);
 
         jMenuBarMain.add(jMenuUsuari);
 
         jMenuJoc.setText("Joc");
 
-        jMenuItemCrearJoc.setText("Crear...");
+        jMenuItemCrearJoc.setText("Crear");
         jMenuItemCrearJoc.addActionListener(this::jMenuItemCrearJocActionPerformed);
         jMenuJoc.add(jMenuItemCrearJoc);
 
-        jMenuItemBorrarJoc.setText("Borrar...");
+        jMenuItemBorrarJoc.setText("Borrar");
         jMenuJoc.add(jMenuItemBorrarJoc);
 
         jMenuBarMain.add(jMenuJoc);
@@ -153,7 +154,12 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     private void jMenuItemCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearJocActionPerformed
-        // TODO add your handling code here:
+        CrearJoc finestra = new CrearJoc(this, true, businessLogic);
+
+        finestra.setLocationRelativeTo(this);
+        finestra.setVisible(true);
+
+        carregarTaula();
     }//GEN-LAST:event_jMenuItemCrearJocActionPerformed
 
     private void jMenuItemCrearUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCrearUsuariActionPerformed
@@ -165,6 +171,10 @@ public class MainScreen extends javax.swing.JFrame {
 
         carregarTaula();
     }//GEN-LAST:event_jMenuItemCrearUsuariActionPerformed
+
+    private void jMenuItemTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTornarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemTornarActionPerformed
 
     /**
      * @param args the command line arguments
