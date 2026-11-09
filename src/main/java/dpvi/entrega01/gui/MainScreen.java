@@ -7,6 +7,11 @@ package dpvi.entrega01.gui;
 import dpvi.entrega01.logic.BusinessLogic;
 import dpvi.entrega01.dto.Lloguer;
 import java.time.LocalDate;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.util.Locale;
 
 /**
  *
@@ -27,6 +32,7 @@ public class MainScreen extends javax.swing.JFrame {
         businessLogic = new BusinessLogic();
 
         carregarTaula();
+        configurarColorsEstat();
     }
 
     /**
@@ -134,6 +140,39 @@ public class MainScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void configurarColorsEstat() {
+
+        jTable1.getColumnModel().getColumn(6).setCellRenderer(
+            new DefaultTableCellRenderer() {
+
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+
+                    Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                    String estat = value.toString();
+
+                    if (estat.equals("Retornat")) {
+                        component.setBackground(new Color(180, 230, 180));
+                        component.setForeground(Color.BLACK);
+
+                    } else if (estat.equals("Fora de termini")) {
+                        component.setBackground(new Color(255, 180, 180));
+                        component.setForeground(Color.BLACK);
+
+                    } else {
+                        component.setBackground(Color.WHITE);
+                        component.setForeground(Color.BLACK);
+                    }
+
+                    setHorizontalAlignment(CENTER);
+
+                    return component;
+                }
+            }
+        );
+    }
+    
     private void carregarTaula() {
 
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
@@ -232,6 +271,7 @@ public class MainScreen extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Locale.setDefault(Locale.forLanguageTag("ca-ES"));
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
