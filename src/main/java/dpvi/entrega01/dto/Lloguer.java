@@ -14,6 +14,7 @@ public class Lloguer {
     private LocalDate dataInici;
     private LocalDate dataTornada;
     private Plataforma plataforma;
+    private boolean retornat;
 
     public Lloguer(int numRegistre, Usuari usuari, Joc joc, LocalDate dataInici, LocalDate dataTornada, Plataforma plataforma) {
         this.numRegistre = numRegistre;
@@ -22,6 +23,7 @@ public class Lloguer {
         this.dataInici = dataInici;
         this.dataTornada = dataTornada;
         this.plataforma = plataforma;
+        this.retornat = false;
     }
 
     public int getNumRegistre() {
@@ -70,6 +72,14 @@ public class Lloguer {
 
     public void setPlataforma(Plataforma plataforma) {
         this.plataforma = plataforma;
+    }
+    
+    public boolean isRetornat() {
+        return retornat;
+    }
+
+    public void setRetornat(boolean retornat) {
+        this.retornat = retornat;
     }
     
 }
